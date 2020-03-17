@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-sunflower.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-sunflower.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ML,模型评估,监督学习,生成模型,判别模型,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="毛毛虫_Wendy" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="Class Content     layout post   title 第一章 统计学习方法概论   categories Course   description: 李航 《统计学习方法》的学习, 主要介绍基本概念,详细叙述了监督学习,提出统计学习的三要素:模型\策略\算法\,另外还介绍了模型选择:包括正则化\交叉验证与学习的泛化能力,此外还介绍了生成模型和判别模型.   keywo">
+<meta name="keywords" content="ML,模型评估,监督学习,生成模型,判别模型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="统计学习方法基础概念">
+<meta property="og:url" content="http://yoursite.com/2019/02/25/统计学习方法基础概念/index.html">
+<meta property="og:site_name" content="毛毛虫_Wendy">
+<meta property="og:description" content="Class Content     layout post   title 第一章 统计学习方法概论   categories Course   description: 李航 《统计学习方法》的学习, 主要介绍基本概念,详细叙述了监督学习,提出统计学习的三要素:模型\策略\算法\,另外还介绍了模型选择:包括正则化\交叉验证与学习的泛化能力,此外还介绍了生成模型和判别模型.   keywo">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5274272-0cce7952ec884123.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5274272-76c6f77c05fa0acd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5274272-ad0a509d1f878c97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5274272-b13906f0ccf143eb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5274272-0e3aa8f40386f5a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5274272-fdc11c80f25065f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5274272-af4bbf5000e198c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5274272-d0992528955d1496.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-02-27T07:17:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="统计学习方法基础概念">
+<meta name="twitter:description" content="Class Content     layout post   title 第一章 统计学习方法概论   categories Course   description: 李航 《统计学习方法》的学习, 主要介绍基本概念,详细叙述了监督学习,提出统计学习的三要素:模型\策略\算法\,另外还介绍了模型选择:包括正则化\交叉验证与学习的泛化能力,此外还介绍了生成模型和判别模型.   keywo">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5274272-0cce7952ec884123.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/25/统计学习方法基础概念/">
+
+
+
+
+
+  <title>统计学习方法基础概念 | 毛毛虫_Wendy</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/DWJWendy" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">毛毛虫_Wendy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">毛毛虫小屋</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/25/统计学习方法基础概念/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wenjun D(Wendy)">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="毛毛虫_Wendy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">统计学习方法基础概念</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-25T10:49:00+08:00">
+                2019-02-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/统计学习方法/" itemprop="url" rel="index">
+                    <span itemprop="name">统计学习方法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/25/统计学习方法基础概念/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/02/25/统计学习方法基础概念/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/02/25/统计学习方法基础概念/" class="leancloud_visitors" data-flag-title="统计学习方法基础概念">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.5k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Class</th>
+<th style="text-align:left">Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">layout</td>
+<td style="text-align:left">post</td>
+</tr>
+<tr>
+<td style="text-align:left">title</td>
+<td style="text-align:left">第一章 统计学习方法概论</td>
+</tr>
+<tr>
+<td style="text-align:left">categories</td>
+<td style="text-align:left">Course</td>
+</tr>
+<tr>
+<td style="text-align:left">description:</td>
+<td style="text-align:left">李航 《统计学习方法》的学习, 主要介绍基本概念,详细叙述了监督学习,提出统计学习的三要素:模型\策略\算法\,另外还介绍了模型选择:包括正则化\交叉验证与学习的泛化能力,此外还介绍了生成模型和判别模型.</td>
+</tr>
+<tr>
+<td style="text-align:left">keywords</td>
+<td style="text-align:left">监督学习 模型三要素 模型选择 生成模型 判别模型</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="统计学习"><a href="#统计学习" class="headerlink" title="统计学习"></a>统计学习</h4><p><strong>a. ~概念:</strong></p>
+<p>又叫统计机器学习,人们提到的机器学习往往指统计机器学习, 它是利用<strong>计算机</strong>对数据<strong>构建的概论统计模型</strong>,并运行模型<strong>对新的数据进行预测和分析</strong></p>
+<p><strong>b. ~特点:</strong><br>(1)平台[计算机及网络] ;<br>(2)对象:数据;<br><strong>(3)目的:分析和预测</strong>;<br>(4)中心:统计学习方法;<br>(5)多领域交叉[概率论\统计学\信息论\最优化\计算理论\计算机科学等]</p>
+<p><strong>c. ~前提假设:</strong></p>
+<p><strong>同一类数据具有一定的统计规律性</strong>[因为它具有统计规律,所以可以用概率统计的方法进行处理,eg 用随机变量描述数据的特征,概论分布描述数据的统计规律]</p>
+<p><strong>d. ~方法:</strong> </p>
+<p>统计学习方法可以分为: 监督学习\非监督学习\半监督学习\强化学习等</p>
+<p><strong>e. 统计学习方法三要素:</strong></p>
+<p><strong>方法 = 模型+策略+算法</strong></p>
+<p><strong>模型</strong>: 这里不再赘述<br><strong>策略</strong>: 按照什么准则学习或者选择最优模型,引用了损失函数(loss function)与风险函数(risk function),详细介绍见博文《详解机器学习中的损失函数》.<br><strong>算法</strong>:学习模型的具体计算方法,根据学习策略从假设空间中选择最优模型,最后需要考虑用什么方法计算最优模型,转化为最优化问题,可能出现有显式的解析解,也可能需要用数值计算的方法进行求解.</p>
+<p>注: 假设训练集和测试集数据是独立同分布产生的</p>
+<p><strong>f. ~步骤:</strong></p>
+<ul>
+<li>得到一个有限的训练数据集合;</li>
+<li>确定包含所有可能的模型的<strong>假设空间</strong>,即学习模型的集合; </li>
+<li>确定模型选择的<strong>准则</strong>,即学习的策略; </li>
+<li>实现<strong>求解最优模型的算法</strong>,即学习的算法;</li>
+<li>通过学习选择最优模型; </li>
+<li>利用学习的最优模型对新数据进行分析和预测.</li>
+</ul>
+<p><strong>g. ~重要性</strong> : 统计学习是处理海量数据最强有力的工具,是计算机智能化的有效手段.</p>
+<hr>
+<h4 id="监督学习"><a href="#监督学习" class="headerlink" title="监督学习"></a>监督学习</h4><p><strong>a. 监督学习概念:</strong></p>
+<p>是统计学习的方法之一, 它是学习一个模型,使得模型能对任意给定的输入,对其相应的输出做出一个好的预测. [最好的判断方式是看它<strong>是否有标签</strong>]</p>
+<p><strong>b. 输入空间\特征空间\输出空间:</strong></p>
+<p>输入与输出所有可能的取值的集合称为输入空间与输出空间,通常输出空间小于输入空间.特征空间表示所有特征存在的空间,而模型实际上是定义在特征空间上的.</p>
+<p><strong>c.训练集和测试集的表示:</strong></p>
+<p> $X$表示输入随机变量,$Y$表示输出随机变量,$x$和$y$是定义在输入和输出空间上随机变量的取值.<br><strong>训练集</strong>: $Train=\lbrace(x_1,y_1),(x_2,y_2),…,(x_n,y_n)\rbrace$<br><strong>测试集</strong>: $Test={(x_{1}^\ast,y_{1}^\ast),(x_{2}^\ast,y_{2}^\ast),…,(x_{n}^\ast,y_{n}^\ast)}$<br>输入和输出对又称为样本或样本点</p>
+<p><strong>d. 不同预测任务的名称:</strong> </p>
+<p>输入变量和输出变量均为连续的预测问题称为<strong>回归问题</strong>;输出变量为有限个离散变量的预测问题称为<strong>分类问题</strong>;输入变量和输出变量均为变量序列的预测问题被称为<strong>标注问题</strong>.</p>
+<p><strong>注: 对于标注问题,目前还没有做过类似的项目,初步理解如下:</strong><br><strong>标注问题:</strong></p>
+<ul>
+<li>输入序列:  $x_i = (x_{i}^{(1)},x_{i}^{(2)},…,x_{i}^{(n)})^T ,i = 1,…,N$</li>
+<li>输出标记序列:  $y_i = (y_{i}^{(1)},y_{i}^{(2)},…,y_{i}^{(n)})^T ,i = 1,…,N$<br>其中$n$为序列长度,不同的样本可以有不同的长度</li>
+<li>条件概率分布为:$P(Y^{(1)},Y^{(2)},…,Y^{(n)}|X^{(1)},X^{(2)},…,X^{(n)})$</li>
+<li>评价指标与分类问题的一致</li>
+<li>常用的机器学习方法:隐马尔可夫模型\条件随机场等</li>
+<li>应用场景:eg 自然语言词性标注.</li>
+</ul>
+<p>e. 监督学习的基本假设: <strong>监督学习假设输入和输出的随机变量$X$和$Y$遵循联合概率分布$P(X,Y)$</strong>,训练集和测试集被看做上依联合概率分布$P(X,Y)$独立同分布产生的.</p>
+<p><strong>f. 假设空间:</strong></p>
+<p>是指包含所有可能的模型的集合,以监督学习为例,假设空间包含所有可能的条件概率分布或决策函数, 它是有参数向量决定的函数族或者条件概率分布族,表示为<br>$\lbrace f|Y=f_\theta(X), \theta\in R^n\rbrace$ 或者 $\lbrace P|P(Y|X)), \theta\in R^n\rbrace$</p>
+<p>而模型是输入到输出的映射,,学习的目的是找到最好的模型,所有假设空间就确定了学习范围.而监督学习的模型可以是概率模型($P(Y|X)$)也可以是非概率模型$Y=f(X)$,所以对于一特定的实例,输出预测为$P(y|x)$和$y=f(x)$.</p>
+<p><strong>g. 监督学习形式化如下:</strong></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5274272-0cce7952ec884123.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1-1 监督学习图"></p>
+<p>阐释: 监督学习假设训练集和测试集都是依联合概率分布$P(X,Y)$独立同分布产生的.从训练集出发,学习系统先训练数据, 应用某个评价准则从假设空间里选择最佳的模型,使得模型对训练数据和新数据在给定的评价准则下有最优的预测,学习到的模型表示为$P(Y|X)$或者$Y=f(X)$,所以在预测过程,给定输入$x_{(n+1)}$,由模型得到$y_{(n+1)}^*$</p>
+<hr>
+<h4 id="模型评估与模型选择"><a href="#模型评估与模型选择" class="headerlink" title="模型评估与模型选择"></a>模型评估与模型选择</h4><p><strong>a. 训练误差\测试误差\泛化误差的概念:</strong></p>
+<p>统计学习不仅要对训练数据有较好的拟合效果,还要对未知数据有较好的泛化能力. 对于给定的损失函数,基于损失函数的模型的训练误差[针对训练集]和模型的测试误差[针对测试集]是学习方法的评估标准. 测试误差反映模型对未知数据的预测能力,测试误差越小,预测能力,即泛化能力越强.</p>
+<p>注: 1. 学习所采用的损失函数可以与预测采用的损失函数不同,但是一般是一致的.</p>
+<ul>
+<li>训练误差:$$R_{exp}(f) = \frac {1}{N}\sum_{i=1}^{N} L(y_i,y_i^*) $$<br>训练误差为模型$Y=f(X)$关于训练集的平均损失,$N$为训练样本容量</li>
+<li>测试误差: $$R_{test}(f) = \frac {1}{N^{‘}}\sum_{i=1}^{N^{‘}} L(y_i,y_i^*) $$<br>测试误差为模型$Y=f(X)$关于测试集的平均损失,$N^{‘}$为训练样本容量</li>
+<li>泛化误差: 泛化能力是指对未知数据的预测能力,而泛化误差反映了学习方法的泛化能力,泛化误差越小,方法越有效, <strong>它实际上就是模型的期望风险</strong>,可以表示为$$R_{exp}(f) = E_p[L(Y.f(X))]=\int_{X \times Y}L(y,f(x))P(x,y)$$</li>
+</ul>
+<p><strong>举例说明</strong><br>当损失函数为0-1损失时,测试误差为 $$e_{test} = \frac {1}{N^{‘}}\sum_{i=1}^{N^{‘}} I(y_i \neq y_i^\ast) $$ 其中$I$为指示函数,即$y_i \neq y_i^\ast$为1,否则为0.<br>相应地,测试集上的准确率为 $1-e_{test}$</p>
+<p><strong>b. 过拟合和模型选择</strong></p>
+<ul>
+<li>模型选择: 由于假设空间含有不同复杂度的模型,模型选择的目的是选择尽可能最优的模型去逼近真模型.</li>
+<li>过拟合: 为了追求训练集的预测能力,提高模型的复杂度[主要是模型包含过多参数],从而导致模型对<strong>训练集预测效果很好,对未知数据泛化能力很差</strong>.</li>
+</ul>
+<p><strong>举例说明:多项式曲线拟合</strong><br>给定一组训练集,表示为$T =\lbrace(x_1,y_1),(x_2,y_2),…,(x_N,y_N)\rbrace$, 对训练集我用下面的多项式进行拟合:<br>$$y^\ast(x,w)= w_0+w_1x+w_2x^2+…+w_Mx^M= \sum_{j=0}^Mw_j^{x_j}$$<br>$$L(w)=\frac{1}{2}\sum_{n=1}^N\lbrace(y^\ast(x_n,w)-y_n)\rbrace^2$$<br>其中$y^*(x_n,w)$是模型预测结果,$y^n$为原始的正确结果,通过最小二乘法可以求得拟合的多项式系数的唯一解.</p>
+<p>拟合结果如(图1-2),图中给出了M=0,1,3,9的拟合效果,可以看出,当M=0时,多项式曲线是常数,拟合效果很差,M=1时,多项式曲线为直线,拟合效果依然很差,相反M=9,多项式曲线拟合了所以点.对于M=0和3的情况下,表现为欠拟合(即拟合不够), 而M=9为过拟合现象.<br><img src="https://upload-images.jianshu.io/upload_images/5274272-76c6f77c05fa0acd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1-2 不同阶数的多项式曲线，⽤红⾊曲线表⽰"></p>
+<p>那么再看一下此时的训练误差和测试误差与模型复杂度关系如(图1-3),随着模型复杂度增加,训练误差和测试误差都先降低,但是随着复杂度变得更高的时候,训练误差变得更小甚至趋近于0,而测试误差陡然上升,此时出现了过拟合现象,模型对训练集过拟合,而对未知数据泛化能力下降.<br><img src="https://upload-images.jianshu.io/upload_images/5274272-ad0a509d1f878c97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1-3 预测误差与模型复杂度关系"><br>另外,我们在看一下参数与模型复杂度的关系, 随着模型复杂度增加$||w||$呈现增加趋势,这也是可以通过<strong>正则化控制模型过拟合</strong>的原因.<br><img src="https://upload-images.jianshu.io/upload_images/5274272-b13906f0ccf143eb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1-4 参数与模型复杂度关系"></p>
+<p><strong>问题来了,那么如何防止过拟合呢?</strong></p>
+<ul>
+<li><strong>1. 增加训练集</strong><br>对于多项式曲线拟合的例子,通过增加训练集数量可以有效减缓过拟合, 可以看出N=15时,模型拟合效果很好,而增加数据,模型难以将每一个数据的都拟合到,所以增加训练集数量可以有效防止过拟合.<br><img src="https://upload-images.jianshu.io/upload_images/5274272-0e3aa8f40386f5a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1-5 增加数据集减缓过拟合"></li>
+<li><p><strong>2. 正则化</strong><br>正则化是指在<strong>经验风险</strong>的基础上加上<strong>正则化项</strong>,正则化项可以取不同的形式,可以是参数向量的$L_2$范数,也可以是$L_1$范数,但是一般来说,<strong>正则化项是模型复杂度单调递增函数</strong><br>$$L(w)=\frac{1}{2}\sum_{n=1}^N\lbrace(y^\ast(x_n,w)-y_n)\rbrace^2+\frac{\lambda}{2}||w||^2$$<br>其中,公式前一部分是经验风险,公式后一部分$\frac{\lambda}{2}||w||^2$是正则化项,$||w||^2= w^Tw=w_0^2+w_1^2+…+w_M^2$,通常,系数$w_0$从正则化项中省略，因为包含$w_0$会使得结果依赖于⽬标变量原点的选择,<br>(Hastie et al., 2001), 而$\lambda$的作用是调节经验风险和正则化项关系的系数,而<strong>正则化的作用是选择经验风险和模型复杂度都较小的模型</strong><br>下图是M=9的模型,利用正则抑制过拟合的例子,图左通过加入正则化项,于$\ln\lambda$ = −18，过拟合现象被压制,而图右$\lambda$过大未能调节好经验风险和正则化项关系,模型拟合效果也差.<br><img src="https://upload-images.jianshu.io/upload_images/5274272-fdc11c80f25065f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1-6 M=9正则抑制过拟合"><br>⽤M = 9的多项式拟合,拟合的多项式的对应的系数在表1.7中给出，表明正则<br>化在减⼩系数的值⽅⾯产⽣了预期的效果.<br><img src="https://upload-images.jianshu.io/upload_images/5274272-af4bbf5000e198c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1-7 λ控制参数"><br><strong>但是$\lambda$该取值多少呢?</strong><br>可以从下图1-8看出,$\lambda$控制了模型的复杂性，因此决定了过拟合的程度.<br><img src="https://upload-images.jianshu.io/upload_images/5274272-d0992528955d1496.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1-8. 不同λ训练误差和测试误差的变化"><br>总结: 在损失函数中加入正则项可以有效避免过拟合,而正则项的$\lambda$决定了过拟合程度,因为起为高参,需要做参数实验取得最佳值.而从贝叶斯估计的角度看,正则化项对应于模型的先验概率,复杂的模型先验概率小,简单的模型先验概率大.</p>
+</li>
+<li><p><strong>3. 交叉验证</strong><br>交叉验证的基本思想是重复使用数据,把给定的数据切分成为训练集和测试集,在此基础上反复进行训练]测试以及模型选择.</p>
+</li>
+</ul>
+<p><strong>详细的交叉验证方法以及如何交叉验证见博客《简述机器学习中模型评估方法》</strong></p>
+<hr>
+<h4 id="生成模型和判别模型"><a href="#生成模型和判别模型" class="headerlink" title="生成模型和判别模型"></a>生成模型和判别模型</h4><p>监督学习模型可以分为两种:生成模型(generative model)和判别模型(discriminative model).</p>
+<ul>
+<li>生成模型:由于模型给定了输入$X$和输出$Y$的关系,所以学习到联合概率分布P(X,Y),然后求出条件概率分布$P(Y|X)$作为预测,eg 朴素贝叶斯\隐马尔可夫模型.<br>生成模型表示为:$$P(Y|X)=\frac{P(X,Y)}{P(X)}$$</li>
+<li>判别模型:由数据直接学出决策函数$f(X)$或者条件概率分布$P(Y|X)$,只关心给定输入$X$预测输出$Y$,eg.K-近邻\感知机\决策树\最大熵\SVM等.</li>
+</ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>本章主要介绍了机器学习的基本概念,详细讲解了监督学习,训练误差\预测误差\泛化误差,生成模型和判别模型等,文章框架依据李航《统计学习方法》第一章而来,准备地说,是自己对其的归纳和简述,同时举例参考bishop的经典《模式识别和机器学习》书籍.</p>
+
+      
+    </div>
+    
+    
+    
+      
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-qcode.jpg" alt="Wenjun D(Wendy) wechat" style="width: 200px; max-width: 100%;">
+    <div>长得好看的都关注了哟</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="Wenjun D(Wendy) 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Wenjun D(Wendy) 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Wenjun D(Wendy)
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/02/25/统计学习方法基础概念/" title="统计学习方法基础概念">http://yoursite.com/2019/02/25/统计学习方法基础概念/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+    <div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ML/" rel="tag"><i class="fa fa-tag"></i> ML</a>
+          
+            <a href="/tags/模型评估/" rel="tag"><i class="fa fa-tag"></i> 模型评估</a>
+          
+            <a href="/tags/监督学习/" rel="tag"><i class="fa fa-tag"></i> 监督学习</a>
+          
+            <a href="/tags/生成模型/" rel="tag"><i class="fa fa-tag"></i> 生成模型</a>
+          
+            <a href="/tags/判别模型/" rel="tag"><i class="fa fa-tag"></i> 判别模型</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/25/简述机器学习中模型评估方法/" rel="next" title="简述机器学习中模型评估方法">
+                <i class="fa fa-chevron-left"></i> 简述机器学习中模型评估方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/25/详述机器学习中的损失函数/" rel="prev" title="详述机器学习中的损失函数">
+                详述机器学习中的损失函数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Wenjun D(Wendy)">
+            
+              <p class="site-author-name" itemprop="name">Wenjun D(Wendy)</p>
+              <p class="site-description motion-element" itemprop="description">Love life, love coding, love freedom</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/DWJWendy" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/35d51c1243f7" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/5246140311/" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:dengwenjun818@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接👭
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://scikit-learn.org/stable/ ||" title="Sklearn" target="_blank">Sklearn</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.tensorflow.org/?hl=zh-cn ||" title="Tensorflow" target="_blank">Tensorflow</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.nowcoder.com/4512295 ||" title="牛客网" target="_blank">牛客网</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#统计学习"><span class="nav-number">1.</span> <span class="nav-text">统计学习</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#监督学习"><span class="nav-number">2.</span> <span class="nav-text">监督学习</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模型评估与模型选择"><span class="nav-number">3.</span> <span class="nav-text">模型评估与模型选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成模型和判别模型"><span class="nav-number">4.</span> <span class="nav-text">生成模型和判别模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wenjun D(Wendy)</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'UOMqRrfV2biHpQ22qY1RCMqQ-gzGzoHsz',
+        appKey: 'FydSJY189qlIwaLxcaji2sUG',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("UOMqRrfV2biHpQ22qY1RCMqQ-gzGzoHsz", "FydSJY189qlIwaLxcaji2sUG");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":80,"height":300,"hOffset":20,"vOffset":-200},"mobile":{"show":true}});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src>
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end --></body>
+</html>

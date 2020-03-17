@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-sunflower.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-sunflower.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="linux,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="毛毛虫_Wendy" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="关机 (系统的关机、重启以及登出 )shutdown -h now 关闭系统(1)init 0 关闭系统(2)telinit 0 关闭系统(3)shutdown -h hours:minutes &amp;amp; 按预定时间关闭系统shutdown -c 取消按预定时间关闭系统shutdown -r now 重启(1)reboot 重启(2)logout 注销 文件和目录cd /home 进入 ‘/ h">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 常用命令大全">
+<meta property="og:url" content="http://yoursite.com/2019/03/05/Linux-常用命令大全/index.html">
+<meta property="og:site_name" content="毛毛虫_Wendy">
+<meta property="og:description" content="关机 (系统的关机、重启以及登出 )shutdown -h now 关闭系统(1)init 0 关闭系统(2)telinit 0 关闭系统(3)shutdown -h hours:minutes &amp;amp; 按预定时间关闭系统shutdown -c 取消按预定时间关闭系统shutdown -r now 重启(1)reboot 重启(2)logout 注销 文件和目录cd /home 进入 ‘/ h">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-05T09:31:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux 常用命令大全">
+<meta name="twitter:description" content="关机 (系统的关机、重启以及登出 )shutdown -h now 关闭系统(1)init 0 关闭系统(2)telinit 0 关闭系统(3)shutdown -h hours:minutes &amp;amp; 按预定时间关闭系统shutdown -c 取消按预定时间关闭系统shutdown -r now 重启(1)reboot 重启(2)logout 注销 文件和目录cd /home 进入 ‘/ h">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/05/Linux-常用命令大全/">
+
+
+
+
+
+  <title>Linux 常用命令大全 | 毛毛虫_Wendy</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/DWJWendy" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">毛毛虫_Wendy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">毛毛虫小屋</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/05/Linux-常用命令大全/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wenjun D(Wendy)">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="毛毛虫_Wendy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux 常用命令大全</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-05T17:18:00+08:00">
+                2019-03-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tool/" itemprop="url" rel="index">
+                    <span itemprop="name">tool</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/05/Linux-常用命令大全/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/05/Linux-常用命令大全/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/03/05/Linux-常用命令大全/" class="leancloud_visitors" data-flag-title="Linux 常用命令大全">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.2k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  17 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="关机-系统的关机、重启以及登出"><a href="#关机-系统的关机、重启以及登出" class="headerlink" title="关机 (系统的关机、重启以及登出 )"></a>关机 (系统的关机、重启以及登出 )</h4><p>shutdown -h now 关闭系统(1)<br>init 0 关闭系统(2)<br>telinit 0 关闭系统(3)<br>shutdown -h hours:minutes &amp; 按预定时间关闭系统<br>shutdown -c 取消按预定时间关闭系统<br>shutdown -r now 重启(1)<br>reboot 重启(2)<br>logout 注销</p>
+<h4 id="文件和目录"><a href="#文件和目录" class="headerlink" title="文件和目录"></a>文件和目录</h4><p>cd /home 进入 ‘/ home’ 目录’<br>cd .. 返回上一级目录<br>cd ../.. 返回上两级目录<br>cd 进入个人的主目录<br>cd ~user1 进入个人的主目录<br>cd - 返回上次所在的目录<br>pwd 显示工作路径<br>ls 查看目录中的文件<br>ls -F 查看目录中的文件<br>ls -l 显示文件和目录的详细资料<br>ls -a 显示隐藏文件<br>ls <em>[0-9]</em> 显示包含数字的文件名和目录名<br>tree 显示文件和目录由根目录开始的树形结构(1)<br>lstree 显示文件和目录由根目录开始的树形结构(2)<br>mkdir dir1 创建一个叫做 ‘dir1’ 的目录’<br>mkdir dir1 dir2 同时创建两个目录<br>mkdir -p /tmp/dir1/dir2 创建一个目录树<br>rm -f file1 删除一个叫做 ‘file1’ 的文件’<br>rmdir dir1 删除一个叫做 ‘dir1’ 的目录’<br>rm -rf dir1 删除一个叫做 ‘dir1’ 的目录并同时删除其内容<br>rm -rf dir1 dir2 同时删除两个目录及它们的内容<br>mv dir1 new_dir 重命名/移动 一个目录<br>cp file1 file2 复制一个文件<br>cp dir/<em> . 复制一个目录下的所有文件到当前工作目录<br>cp -a /tmp/dir1 . 复制一个目录到当前工作目录<br>cp -a dir1 dir2 复制一个目录<br>ln -s file1 lnk1 创建一个指向文件或目录的软链接<br>ln file1 lnk1 创建一个指向文件或目录的物理链接<br>touch -t 0712250000 file1 修改一个文件或目录的时间戳 - (YYMMDDhhmm)<br>file file1 outputs the mime type of the file as text<br>iconv -l 列出已知的编码<br>iconv -f fromEncoding -t toEncoding inputFile &gt; outputFile creates a new from the given input file by assuming it is encoded in fromEncoding and converting it to toEncoding.<br>find . -maxdepth 1 -name </em>.jpg -print -exec convert “{}” -resize 80x60 “thumbs/{}” \; batch resize files in the current directory and send them to a thumbnails directory (requires convert from Imagemagick) </p>
+<h4 id="文件搜索"><a href="#文件搜索" class="headerlink" title="文件搜索"></a>文件搜索</h4><p>find / -name file1 从 ‘/‘ 开始进入根文件系统搜索文件和目录<br>find / -user user1 搜索属于用户 ‘user1’ 的文件和目录<br>find /home/user1 -name *.bin 在目录 ‘/ home/user1’ 中搜索带有’.bin’ 结尾的文件<br>find /usr/bin -type f -atime +100 搜索在过去100天内未被使用过的执行文件<br>find /usr/bin -type f -mtime -10 搜索在10天内被创建或者修改过的文件<br>find / -name *.rpm -exec chmod 755 ‘{}’ \; 搜索以 ‘.rpm’ 结尾的文件并定义其权限<br>find / -xdev -name *.rpm 搜索以 ‘.rpm’ 结尾的文件，忽略光驱、捷盘等可移动设备<br>locate *.ps 寻找以 ‘.ps’ 结尾的文件 - 先运行 ‘updatedb’ 命令<br>whereis halt 显示一个二进制文件、源码或man的位置<br>which halt 显示一个二进制文件或可执行文件的完整路径 </p>
+<h4 id="用户和群组"><a href="#用户和群组" class="headerlink" title="用户和群组"></a>用户和群组</h4><p>groupadd group_name 创建一个新用户组<br>groupdel group_name 删除一个用户组<br>groupmod -n new_group_name old_group_name 重命名一个用户组<br>useradd -c “Name Surname “ -g admin -d /home/user1 -s /bin/bash user1 创建一个属于 “admin” 用户组的用户<br>useradd user1 创建一个新用户<br>userdel -r user1 删除一个用户 ( ‘-r’ 排除主目录)<br>usermod -c “User FTP” -g system -d /ftp/user1 -s /bin/nologin user1 修改用户属性<br>passwd 修改口令<br>passwd user1 修改一个用户的口令 (只允许root执行)<br>chage -E 2005-12-31 user1 设置用户口令的失效期限<br>pwck 检查 ‘/etc/passwd’ 的文件格式和语法修正以及存在的用户<br>grpck 检查 ‘/etc/passwd’ 的文件格式和语法修正以及存在的群组<br>newgrp group_name 登陆进一个新的群组以改变新创建文件的预设群组 </p>
+<h4 id="文件的权限-使用-“-”-设置权限，使用-“-“-用于取消"><a href="#文件的权限-使用-“-”-设置权限，使用-“-“-用于取消" class="headerlink" title="文件的权限 - 使用 “+” 设置权限，使用 “-“ 用于取消"></a>文件的权限 - 使用 “+” 设置权限，使用 “-“ 用于取消</h4><p>ls -lh 显示权限<br>ls /tmp | pr -T5 -W$COLUMNS 将终端划分成5栏显示<br>chmod ugo+rwx directory1 设置目录的所有人(u)、群组(g)以及其他人(o)以读（r ）、写(w)和执行(x)的权限<br>chmod go-rwx directory1 删除群组(g)与其他人(o)对目录的读写执行权限<br>chown user1 file1 改变一个文件的所有人属性<br>chown -R user1 directory1 改变一个目录的所有人属性并同时改变改目录下所有文件的属性<br>chgrp group1 file1 改变文件的群组<br>chown user1:group1 file1 改变一个文件的所有人和群组属性<br>find / -perm -u+s 罗列一个系统中所有使用了SUID控制的文件<br>chmod u+s /bin/file1 设置一个二进制文件的 SUID 位 - 运行该文件的用户也被赋予和所有者同样的权限<br>chmod u-s /bin/file1 禁用一个二进制文件的 SUID位<br>chmod g+s /home/public 设置一个目录的SGID 位 - 类似SUID ，不过这是针对目录的<br>chmod g-s /home/public 禁用一个目录的 SGID 位<br>chmod o+t /home/public 设置一个文件的 STIKY 位 - 只允许合法所有人删除文件<br>chmod o-t /home/public 禁用一个目录的 STIKY 位</p>
+<h4 id="文件的特殊属性-使用-“-”-设置权限，使用-“-“-用于取消"><a href="#文件的特殊属性-使用-“-”-设置权限，使用-“-“-用于取消" class="headerlink" title="文件的特殊属性 - 使用 “+” 设置权限，使用 “-“ 用于取消"></a>文件的特殊属性 - 使用 “+” 设置权限，使用 “-“ 用于取消</h4><p>chattr +a file1 只允许以追加方式读写文件<br>chattr +c file1 允许这个文件能被内核自动压缩/解压<br>chattr +d file1 在进行文件系统备份时，dump程序将忽略这个文件<br>chattr +i file1 设置成不可变的文件，不能被删除、修改、重命名或者链接<br>chattr +s file1 允许一个文件被安全地删除<br>chattr +S file1 一旦应用程序对这个文件执行了写操作，使系统立刻把修改的结果写到磁盘<br>chattr +u file1 若文件被删除，系统会允许你在以后恢复这个被删除的文件<br>lsattr 显示特殊的属性 </p>
+<h4 id="打包和压缩文件"><a href="#打包和压缩文件" class="headerlink" title="打包和压缩文件"></a>打包和压缩文件</h4><p>bunzip2 file1.bz2 解压一个叫做 ‘file1.bz2’的文件<br>bzip2 file1 压缩一个叫做 ‘file1’ 的文件<br>gunzip file1.gz 解压一个叫做 ‘file1.gz’的文件<br>gzip file1 压缩一个叫做 ‘file1’的文件<br>gzip -9 file1 最大程度压缩<br>rar a file1.rar test_file 创建一个叫做 ‘file1.rar’ 的包<br>rar a file1.rar file1 file2 dir1 同时压缩 ‘file1’, ‘file2’ 以及目录 ‘dir1’<br>rar x file1.rar 解压rar包<br>unrar x file1.rar 解压rar包<br>tar -cvf archive.tar file1 创建一个非压缩的 tarball<br>tar -cvf archive.tar file1 file2 dir1 创建一个包含了 ‘file1’, ‘file2’ 以及 ‘dir1’的档案文件<br>tar -tf archive.tar 显示一个包中的内容<br>tar -xvf archive.tar 释放一个包<br>tar -xvf archive.tar -C /tmp 将压缩包释放到 /tmp目录下<br>tar -cvfj archive.tar.bz2 dir1 创建一个bzip2格式的压缩包<br>tar -jxvf archive.tar.bz2 解压一个bzip2格式的压缩包<br>tar -cvfz archive.tar.gz dir1 创建一个gzip格式的压缩包<br>tar -zxvf archive.tar.gz 解压一个gzip格式的压缩包<br>zip file1.zip file1 创建一个zip格式的压缩包<br>zip -r file1.zip file1 file2 dir1 将几个文件和目录同时压缩成一个zip格式的压缩包<br>unzip file1.zip 解压一个zip格式压缩包 </p>
+<h4 id="APT-软件工具-Debian-Ubuntu-以及类似系统"><a href="#APT-软件工具-Debian-Ubuntu-以及类似系统" class="headerlink" title="APT 软件工具 (Debian, Ubuntu 以及类似系统)"></a>APT 软件工具 (Debian, Ubuntu 以及类似系统)</h4><p>apt-get install package_name 安装/更新一个 deb 包<br>apt-cdrom install package_name 从光盘安装/更新一个 deb 包<br>apt-get update 升级列表中的软件包<br>apt-get upgrade 升级所有已安装的软件<br>apt-get remove package_name 从系统删除一个deb包<br>apt-get check 确认依赖的软件仓库正确<br>apt-get clean 从下载的软件包中清理缓存<br>apt-cache search searched-package 返回包含所要搜索字符串的软件包名称 </p>
+<h4 id="查看文件内容"><a href="#查看文件内容" class="headerlink" title="查看文件内容"></a>查看文件内容</h4><p>cat file1 从第一个字节开始正向查看文件的内容<br>tac file1 从最后一行开始反向查看一个文件的内容<br>more file1 查看一个长文件的内容<br>less file1 类似于 ‘more’ 命令，但是它允许在文件中和正向操作一样的反向操作<br>head -2 file1 查看一个文件的前两行<br>tail -2 file1 查看一个文件的最后两行<br>tail -f /var/log/messages 实时查看被添加到一个文件中的内容 </p>
+<h4 id="文本处理"><a href="#文本处理" class="headerlink" title="文本处理"></a>文本处理</h4><p>cat file1 file2 … | command &lt;&gt; file1_in.txt_or_file1_out.txt general syntax for text manipulation using PIPE, STDIN and STDOUT<br>cat file1 | command( sed, grep, awk, grep, etc…) &gt; result.txt 合并一个文件的详细说明文本，并将简介写入一个新文件中<br>cat file1 | command( sed, grep, awk, grep, etc…) &gt;&gt; result.txt 合并一个文件的详细说明文本，并将简介写入一个已有的文件中<br>grep Aug /var/log/messages 在文件 ‘/var/log/messages’中查找关键词”Aug”<br>grep ^Aug /var/log/messages 在文件 ‘/var/log/messages’中查找以”Aug”开始的词汇<br>grep [0-9] /var/log/messages 选择 ‘/var/log/messages’ 文件中所有包含数字的行<br>grep Aug -R /var/log/<em> 在目录 ‘/var/log’ 及随后的目录中搜索字符串”Aug”<br>sed ‘s/stringa1/stringa2/g’ example.txt 将example.txt文件中的 “string1” 替换成 “string2”<br>sed ‘/^$/d’ example.txt 从example.txt文件中删除所有空白行<br>echo ‘esempio’ | tr ‘[:lower:]’ ‘[:upper:]’ 合并上下单元格内容<br>sed -e ‘1d’ result.txt 从文件example.txt 中排除第一行<br>sed -n ‘/stringa1/p’ 查看只包含词汇 “string1”的行<br>sed -e ‘s/ </em>$//‘ example.txt 删除每一行最后的空白字符<br>sed -e ‘s/stringa1//g’ example.txt 从文档中只删除词汇 “string1” 并保留剩余全部<br>sed -n ‘1,5p;5q’ example.txt 查看从第一行到第5行内容<br>sed -n ‘5p;5q’ example.txt 查看第5行<br>sed -e ‘s/00*/0/g’ example.txt 用单个零替换多个零<br>cat -n file1 标示文件的行数<br>cat example.txt | awk ‘NR%2==1’ 删除example.txt文件中的所有偶数行<br>echo a b c | awk ‘{print $1}’ 查看一行第一栏<br>paste file1 file2 合并两个文件或两栏的内容<br>paste -d ‘+’ file1 file2 合并两个文件或两栏的内容，中间用”+”区分<br>sort file1 file2 排序两个文件的内容<br>sort file1 file2 | uniq 取出两个文件的并集(重复的行只保留一份)<br>sort file1 file2 | uniq -u 删除交集，留下其他的行<br>sort file1 file2 | uniq -d 取出两个文件的交集(只留下同时存在于两个文件中的文件)<br>comm -1 file1 file2 比较两个文件的内容只删除 ‘file1’ 所包含的内容<br>comm -2 file1 file2 比较两个文件的内容只删除 ‘file2’ 所包含的内容<br>comm -3 file1 file2 比较两个文件的内容只删除两个文件共有的部分 </p>
+<h4 id="字符设置和文件格式转换"><a href="#字符设置和文件格式转换" class="headerlink" title="字符设置和文件格式转换"></a>字符设置和文件格式转换</h4><p>dos2unix filedos.txt fileunix.txt 将一个文本文件的格式从MSDOS转换成UNIX<br>unix2dos fileunix.txt filedos.txt 将一个文本文件的格式从UNIX转换成MSDOS<br>recode ..HTML &lt; page.txt &gt; page.html 将一个文本文件转换成html<br>recode -l | more 显示所有允许的转换格式 </p>
+<h4 id="文件系统分析"><a href="#文件系统分析" class="headerlink" title="文件系统分析"></a>文件系统分析</h4><p>badblocks -v /dev/hda1 检查磁盘hda1上的坏磁块<br>fsck /dev/hda1 修复/检查hda1磁盘上linux文件系统的完整性<br>fsck.ext2 /dev/hda1 修复/检查hda1磁盘上ext2文件系统的完整性<br>e2fsck /dev/hda1 修复/检查hda1磁盘上ext2文件系统的完整性<br>e2fsck -j /dev/hda1 修复/检查hda1磁盘上ext3文件系统的完整性<br>fsck.ext3 /dev/hda1 修复/检查hda1磁盘上ext3文件系统的完整性<br>fsck.vfat /dev/hda1 修复/检查hda1磁盘上fat文件系统的完整性<br>fsck.msdos /dev/hda1 修复/检查hda1磁盘上dos文件系统的完整性<br>dosfsck /dev/hda1 修复/检查hda1磁盘上dos文件系统的完整性 </p>
+<h4 id="初始化一个文件系统"><a href="#初始化一个文件系统" class="headerlink" title="初始化一个文件系统"></a>初始化一个文件系统</h4><p>mkfs /dev/hda1 在hda1分区创建一个文件系统<br>mke2fs /dev/hda1 在hda1分区创建一个linux ext2的文件系统<br>mke2fs -j /dev/hda1 在hda1分区创建一个linux ext3(日志型)的文件系统<br>mkfs -t vfat 32 -F /dev/hda1 创建一个 FAT32 文件系统<br>fdformat -n /dev/fd0 格式化一个软盘<br>mkswap /dev/hda3 创建一个swap文件系统 </p>
+<h4 id="SWAP文件系统"><a href="#SWAP文件系统" class="headerlink" title="SWAP文件系统"></a>SWAP文件系统</h4><p>mkswap /dev/hda3 创建一个swap文件系统<br>swapon /dev/hda3 启用一个新的swap文件系统<br>swapon /dev/hda2 /dev/hdb3 启用两个swap分区 </p>
+<h4 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h4><p>dump -0aj -f /tmp/home0.bak /home 制作一个 ‘/home’ 目录的完整备份<br>dump -1aj -f /tmp/home0.bak /home 制作一个 ‘/home’ 目录的交互式备份<br>restore -if /tmp/home0.bak 还原一个交互式备份<br>rsync -rogpav –delete /home /tmp 同步两边的目录<br>rsync -rogpav -e ssh –delete /home ip_address:/tmp 通过SSH通道rsync<br>rsync -az -e ssh –delete ip_addr:/home/public /home/local 通过ssh和压缩将一个远程目录同步到本地目录<br>rsync -az -e ssh –delete /home/local ip_addr:/home/public 通过ssh和压缩将本地目录同步到远程目录<br>dd bs=1M if=/dev/hda | gzip | ssh user@ip_addr ‘dd of=hda.gz’ 通过ssh在远程主机上执行一次备份本地磁盘的操作<br>dd if=/dev/sda of=/tmp/file1 备份磁盘内容到一个文件<br>tar -Puf backup.tar /home/user 执行一次对 ‘/home/user’ 目录的交互式备份操作<br>( cd /tmp/local/ &amp;&amp; tar c . ) | ssh -C user@ip_addr ‘cd /home/share/ &amp;&amp; tar x -p’ 通过ssh在远程目录中复制一个目录内容<br>( tar c /home ) | ssh -C user@ip_addr ‘cd /home/backup-home &amp;&amp; tar x -p’ 通过ssh在远程目录中复制一个本地目录<br>tar cf - . | (cd /tmp/backup ; tar xf - ) 本地将一个目录复制到另一个地方，保留原有权限及链接<br>find /home/user1 -name ‘<em>.txt’ | xargs cp -av –target-directory=/home/backup/ –parents 从一个目录查找并复制所有以 ‘.txt’ 结尾的文件到另一个目录<br>find /var/log -name ‘</em>.log’ | tar cv –files-from=- | bzip2 &gt; log.tar.bz2 查找所有以 ‘.log’ 结尾的文件并做成一个bzip包<br>dd if=/dev/hda of=/dev/fd0 bs=512 count=1 做一个将 MBR (Master Boot Record)内容复制到软盘的动作<br>dd if=/dev/fd0 of=/dev/hda bs=512 count=1 从已经保存到软盘的备份中恢复MBR内容 </p>
+<h4 id="光盘"><a href="#光盘" class="headerlink" title="光盘"></a>光盘</h4><p>cdrecord -v gracetime=2 dev=/dev/cdrom -eject blank=fast -force 清空一个可复写的光盘内容<br>mkisofs /dev/cdrom &gt; cd.iso 在磁盘上创建一个光盘的iso镜像文件<br>mkisofs /dev/cdrom | gzip &gt; cd_iso.gz 在磁盘上创建一个压缩了的光盘iso镜像文件<br>mkisofs -J -allow-leading-dots -R -V “Label CD” -iso-level 4 -o ./cd.iso data_cd 创建一个目录的iso镜像文件<br>cdrecord -v dev=/dev/cdrom cd.iso 刻录一个ISO镜像文件<br>gzip -dc cd_iso.gz | cdrecord dev=/dev/cdrom - 刻录一个压缩了的ISO镜像文件<br>mount -o loop cd.iso /mnt/iso 挂载一个ISO镜像文件<br>cd-paranoia -B 从一个CD光盘转录音轨到 wav 文件中<br>cd-paranoia – “-3” 从一个CD光盘转录音轨到 wav 文件中（参数-3）<br>cdrecord –scanbus 扫描总线以识别scsi通道<br>dd if=/dev/hdc | md5sum 校验一个设备的md5sum编码，例如一张 CD </p>
+<h4 id="系统信息"><a href="#系统信息" class="headerlink" title="系统信息"></a>系统信息</h4><p>arch 显示机器的处理器架构(1)<br>uname -m 显示机器的处理器架构(2)<br>uname -r 显示正在使用的内核版本<br>dmidecode -q 显示硬件系统部件 - (SMBIOS / DMI)<br>hdparm -i /dev/hda 罗列一个磁盘的架构特性<br>hdparm -tT /dev/sda 在磁盘上执行测试性读取操作<br>cat /proc/cpuinfo 显示CPU info的信息<br>cat /proc/interrupts 显示中断<br>cat /proc/meminfo 校验内存使用<br>cat /proc/swaps 显示哪些swap被使用<br>cat /proc/version 显示内核的版本<br>cat /proc/net/dev 显示网络适配器及统计<br>cat /proc/mounts 显示已加载的文件系统<br>lspci -tv 罗列 PCI 设备<br>lsusb -tv 显示 USB 设备<br>date 显示系统日期<br>cal 2007 显示2007年的日历表<br>date 041217002007.00 设置日期和时间 - 月日时分年.秒<br>clock -w 将时间修改保存到 BIOS </p>
+<h4 id="挂载一个文件系统"><a href="#挂载一个文件系统" class="headerlink" title="挂载一个文件系统"></a>挂载一个文件系统</h4><p>mount /dev/hda2 /mnt/hda2 挂载一个叫做hda2的盘 - 确定目录 ‘/ mnt/hda2’ 已经存在<br>umount /dev/hda2 卸载一个叫做hda2的盘 - 先从挂载点 ‘/ mnt/hda2’ 退出<br>fuser -km /mnt/hda2 当设备繁忙时强制卸载<br>umount -n /mnt/hda2 运行卸载操作而不写入 /etc/mtab 文件- 当文件为只读或当磁盘写满时非常有用<br>mount /dev/fd0 /mnt/floppy 挂载一个软盘<br>mount /dev/cdrom /mnt/cdrom 挂载一个cdrom或dvdrom<br>mount /dev/hdc /mnt/cdrecorder 挂载一个cdrw或dvdrom<br>mount /dev/hdb /mnt/cdrecorder 挂载一个cdrw或dvdrom<br>mount -o loop file.iso /mnt/cdrom 挂载一个文件或ISO镜像文件<br>mount -t vfat /dev/hda5 /mnt/hda5 挂载一个Windows FAT32文件系统<br>mount /dev/sda1 /mnt/usbdisk 挂载一个usb 捷盘或闪存设备<br>mount -t smbfs -o username=user,password=pass //WinClient/share /mnt/share 挂载一个windows网络共享 </p>
+<h4 id="磁盘空间"><a href="#磁盘空间" class="headerlink" title="磁盘空间"></a>磁盘空间</h4><p>df -h 显示已经挂载的分区列表<br>ls -lSr |more 以尺寸大小排列文件和目录<br>du -sh dir1 估算目录 ‘dir1’ 已经使用的磁盘空间’<br>du -sk * | sort -rn 以容量大小为依据依次显示文件和目录的大小<br>rpm -q -a –qf ‘%10{SIZE}t%{NAME}n’ | sort -k1,1n 以大小为依据依次显示已安装的rpm包所使用的空间 (fedora, redhat类系统)<br>dpkg-query -W -f=’${Installed-Size;10}t${Package}n’ | sort -k1,1n 以大小为依据显示已安装的deb包所使用的空间 (ubuntu, debian类系统) </p>
+
+      
+    </div>
+    
+    
+    
+      
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-qcode.jpg" alt="Wenjun D(Wendy) wechat" style="width: 200px; max-width: 100%;">
+    <div>长得好看的都关注了哟</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="Wenjun D(Wendy) 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Wenjun D(Wendy) 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Wenjun D(Wendy)
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/03/05/Linux-常用命令大全/" title="Linux 常用命令大全">http://yoursite.com/2019/03/05/Linux-常用命令大全/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+    <div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"><i class="fa fa-tag"></i> linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/05/k近邻法/" rel="next" title="k近邻法">
+                <i class="fa fa-chevron-left"></i> k近邻法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/06/贝叶斯/" rel="prev" title="贝叶斯分类: 朴素贝叶斯法">
+                贝叶斯分类: 朴素贝叶斯法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Wenjun D(Wendy)">
+            
+              <p class="site-author-name" itemprop="name">Wenjun D(Wendy)</p>
+              <p class="site-description motion-element" itemprop="description">Love life, love coding, love freedom</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/DWJWendy" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/35d51c1243f7" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/5246140311/" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:dengwenjun818@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接👭
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://scikit-learn.org/stable/ ||" title="Sklearn" target="_blank">Sklearn</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.tensorflow.org/?hl=zh-cn ||" title="Tensorflow" target="_blank">Tensorflow</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.nowcoder.com/4512295 ||" title="牛客网" target="_blank">牛客网</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#关机-系统的关机、重启以及登出"><span class="nav-number">1.</span> <span class="nav-text">关机 (系统的关机、重启以及登出 )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件和目录"><span class="nav-number">2.</span> <span class="nav-text">文件和目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件搜索"><span class="nav-number">3.</span> <span class="nav-text">文件搜索</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户和群组"><span class="nav-number">4.</span> <span class="nav-text">用户和群组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件的权限-使用-“-”-设置权限，使用-“-“-用于取消"><span class="nav-number">5.</span> <span class="nav-text">文件的权限 - 使用 “+” 设置权限，使用 “-“ 用于取消</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件的特殊属性-使用-“-”-设置权限，使用-“-“-用于取消"><span class="nav-number">6.</span> <span class="nav-text">文件的特殊属性 - 使用 “+” 设置权限，使用 “-“ 用于取消</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打包和压缩文件"><span class="nav-number">7.</span> <span class="nav-text">打包和压缩文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#APT-软件工具-Debian-Ubuntu-以及类似系统"><span class="nav-number">8.</span> <span class="nav-text">APT 软件工具 (Debian, Ubuntu 以及类似系统)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看文件内容"><span class="nav-number">9.</span> <span class="nav-text">查看文件内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文本处理"><span class="nav-number">10.</span> <span class="nav-text">文本处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符设置和文件格式转换"><span class="nav-number">11.</span> <span class="nav-text">字符设置和文件格式转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件系统分析"><span class="nav-number">12.</span> <span class="nav-text">文件系统分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#初始化一个文件系统"><span class="nav-number">13.</span> <span class="nav-text">初始化一个文件系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SWAP文件系统"><span class="nav-number">14.</span> <span class="nav-text">SWAP文件系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#备份"><span class="nav-number">15.</span> <span class="nav-text">备份</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#光盘"><span class="nav-number">16.</span> <span class="nav-text">光盘</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统信息"><span class="nav-number">17.</span> <span class="nav-text">系统信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#挂载一个文件系统"><span class="nav-number">18.</span> <span class="nav-text">挂载一个文件系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#磁盘空间"><span class="nav-number">19.</span> <span class="nav-text">磁盘空间</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wenjun D(Wendy)</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'UOMqRrfV2biHpQ22qY1RCMqQ-gzGzoHsz',
+        appKey: 'FydSJY189qlIwaLxcaji2sUG',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("UOMqRrfV2biHpQ22qY1RCMqQ-gzGzoHsz", "FydSJY189qlIwaLxcaji2sUG");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":80,"height":300,"hOffset":20,"vOffset":-200},"mobile":{"show":true}});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src>
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end --></body>
+</html>
