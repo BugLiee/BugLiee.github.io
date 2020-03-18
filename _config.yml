@@ -102,7 +102,7 @@ comments_provider: gitalk
      #   client_secret: 
 # https://github.com/gitalk/gitalk#install
 gitalk:
-    owner: BugLi
+    owner: BugContainer
     repo: blog-comments
     clientID: d6291aa805bf0b34b93a
     clientSecret: 42428634ab0930b3a764eb56da512122c048118b
