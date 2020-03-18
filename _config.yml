@@ -103,7 +103,7 @@ comments_provider: gitalk
 # https://github.com/gitalk/gitalk#install
 gitalk:
     owner: BugContainer
-    repo: https://bugcontainer.github.io
+    repo: blog-comments
     clientID: d6291aa805bf0b34b93a
     clientSecret: 42428634ab0930b3a764eb56da512122c048118b
 # 在使用其它评论组件时可点击显示 Disqus
