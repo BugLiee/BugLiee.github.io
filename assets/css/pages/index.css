@@ -1,13 +1,13 @@
     <!--顶部header颜色-->
 .home .banner,
 .home .site-header {
-    background: #0099CC;
+    background: #333333;
     color: #fff
 }
 
 .home .banner .collection-head {
     color: #fff;
-    background: 0 0;
+    background: #333333;
     box-shadow: none;
     -webkit-box-shadow: none
 }
