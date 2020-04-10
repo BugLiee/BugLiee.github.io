@@ -76,10 +76,6 @@ gems:
     - jekyll-feed
     - jemoji
 #     - jekyll-mentions
-collections:
-    keywords:
-        output: true
-        permalink: /keywords/:path/
 
 repository: bugcontainer/bugcontainer.github.io/
 
