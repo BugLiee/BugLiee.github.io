@@ -1,5 +1,5 @@
 ---
-layout: keywords
+layout: page
 title: Keywords
 description: 人越学越觉得自己无知
 keywords: Keywords
