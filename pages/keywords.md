@@ -9,7 +9,7 @@ permalink: /keywords/
 ---
 
 <section class="container posts-content">
-{% assign sorted_keywords = site.keywords | sort %}
+{% assign sorted_keywords = site.categories | sort %}
 {% for keyword in sorted_keywords %}
 <h3>{{ keyword | first }}</h3>
 <ol class="posts-list" id="{{ keyword[0] }}">
