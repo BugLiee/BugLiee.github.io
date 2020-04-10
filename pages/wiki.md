@@ -1,19 +1,19 @@
 ---
 layout: page
-title: Wiki
+title: Keywords
 description: 人越学越觉得自己无知
-keywords: 维基, Wiki
+keywords: 标签, Keywords
 comments: false
-menu: 维基
-permalink: /wiki/
+menu: 标签归档
+permalink: /keywords/
 ---
 
 > 记多少命令和快捷键会让脑袋爆炸呢？
 
 <ul class="listing">
-{% for wiki in site.wiki %}
-{% if wiki.title != "Wiki Template" %}
-<li class="listing-item"><a href="{{ site.url }}{{ wiki.url }}">{{ wiki.title }}</a></li>
+{% for keyword in site.keywords %}
+{% if keyword.title != "Template" %}
+<li class="listing-item"><a href="{{ site.url }}{{ keyword.url }}">{{ keyword.title }}</a></li>
 {% endif %}
 {% endfor %}
 </ul>

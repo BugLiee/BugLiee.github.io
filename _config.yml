@@ -36,11 +36,11 @@ navs:
 
   -
      href: /archives/
-     label: 归档
+     label: 时间归档
 
   -
-    href: /wiki/
-    label: 维基
+    href: /keywords/
+    label: 标签归档
 
   -
     href: /links/
@@ -77,9 +77,9 @@ gems:
     - jemoji
 #     - jekyll-mentions
 collections:
-    wiki:
+    keywords:
         output: true
-        permalink: /wiki/:path/
+        permalink: /keywords/:path/
 
 repository: bugcontainer/bugcontainer.github.io/
 
