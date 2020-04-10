@@ -37,7 +37,11 @@ navs:
   -
      href: /archives/
      label: 时间归档
-
+     
+  -
+     href: /keywords/
+     label: 标签归档
+     
   -
     href: /links/
     label: 链接
