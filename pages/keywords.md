@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: categories
 title: 标签归档
 description: 人越学越觉得自己无知
 keywords: Keywords
