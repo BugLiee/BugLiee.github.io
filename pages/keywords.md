@@ -2,15 +2,15 @@
 layout: page
 title: Keywords
 description: 人越学越觉得自己无知
-keywords: 标签, Keywords
+keywords: Keywords
 comments: false
 menu: 标签归档
 permalink: /keywords/
 ---
 
 <section class="container posts-content">
-{% assign sorted_categories = site.keywords | sort %}
-{% for keyword in sorted_categories %}
+{% assign sorted_keywords = site.keywords | sort %}
+{% for keyword in sorted_keywords %}
 <h3>{{ keyword | first }}</h3>
 <ol class="posts-list" id="{{ keyword[0] }}">
 {% for post in keyword.last %}
