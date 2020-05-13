@@ -2,7 +2,7 @@
 #   Main Configs   #
 # ---------------- #
 baseurl:
-url: https://bugcontainer.github.io/
+url: http://bugli.top
 date_format: "ordinal"
 title: BugLi
 subtitle: "BugLi的回收站"
