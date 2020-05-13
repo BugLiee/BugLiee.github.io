@@ -1,6 +1,7 @@
 # ---------------- #
 #   Main Configs   #
 # ---------------- #
+# ---如果自己配置了域名，url一定要修改，不然部分功能可能由于地址错误找不到资源而无法使用---#
 baseurl:
 url: http://bugli.top
 date_format: "ordinal"
