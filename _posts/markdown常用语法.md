@@ -54,3 +54,11 @@ System.out.println(“Hello”) ;
 ## 这是二级标题
 
 ### 这是三级标题
+
+---
+layout: post
+title: Kotlin MVVM酷欧天气完整解析
+categories: Kotlin
+description: 以酷欧天气为基石分析Kotlin的MVVM实现
+keywords: Kotlin, MVVM
+---
