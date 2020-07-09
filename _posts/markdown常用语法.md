@@ -17,11 +17,15 @@
 使用< br >
 
 3. 字体大小、颜色、类型、加粗、倾斜
-< font size=5> Hello
+<font face="黑体">我是黑体字</font>
+<font face="微软雅黑">我是微软雅黑</font>
+<font face="STCAIYUN">我是华文彩云</font>
+<font color=red>我是红色</font>
+<font color=#008000>我是绿色</font>
+<font color=Blue>我是蓝色</font>
+<font size=5>我是尺寸</font>
+<font face="黑体" color=green size=5>我是黑体，绿色，尺寸为5</font>
 
-< font color=red>color
-
-< font face=“微软雅黑”>微软雅黑
 
 ** 内容 ** 　(左二* 右二*  与内容之间没有空格)   加粗
 
