@@ -16,7 +16,7 @@
 
 使用< br >
 
-3. 字体大小、颜色、类型、加粗、倾斜
+3. 字体大小、颜色、类型、加粗、倾斜<br>
 <font face="黑体">我是黑体字</font>
 <font face="微软雅黑">我是微软雅黑</font>
 <font face="STCAIYUN">我是华文彩云</font>
