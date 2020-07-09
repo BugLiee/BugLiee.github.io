@@ -19,7 +19,7 @@ side_bar_repo_limit: 5
 author: BugLi
 organization: 
 organization_url: 
-github_username: BugContainer
+github_username: BugLiee
 location: YueYang, China
 email: li610327352@gmail.com
 
@@ -78,7 +78,7 @@ gems:
     - jemoji
 #     - jekyll-mentions
 
-repository: bugcontainer/bugcontainer.github.io/
+repository: BugLiee/BugLiee.github.io/
 
 # ---------------- #
 #      Comments    #
@@ -99,7 +99,7 @@ comments_provider: gitalk
      #   client_secret: 
 # https://github.com/gitalk/gitalk#install
 gitalk:
-    owner: BugContainer
+    owner: BugLiee
     repo: blog-comments
     clientID: d6291aa805bf0b34b93a
     clientSecret: 42428634ab0930b3a764eb56da512122c048118b
